@@ -1,6 +1,6 @@
 .homeFeedBodyRight {
     position: sticky;
-    min-height: 1000px;
+    min-height: 600px;
     height: 100%;
     width: 30%;
     top: 105px;
@@ -9,6 +9,8 @@
     justify-content: flex-start;
     align-items: center;
     border-left: var(--gray) solid 1.4px;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .profileBanner {
@@ -43,22 +45,75 @@
 }
 
 .profileInfo {
-    margin-top: 60px;
-    height: 60px;
+    margin-top: 54px;
+    height: 72px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray);
 }
 
 .profileName {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
 }
 
 .profileTitle {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--darkGray);
     margin-top: 6px;
+}
+
+.explore {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 28px;
+}
+
+.exploreHeader {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.exploreGroup {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.exploreGroupHeader {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.exploreItem {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.exploreItemIcon {
+    font-size: 16px;
+    width: 30px;
+}
+
+.exploreItemText {
+    font-size: 14px;
 }

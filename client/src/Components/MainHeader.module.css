@@ -1,0 +1,58 @@
+.mainHeader {
+    height: 65px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 40px;
+}
+
+.mainLeft {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mainLeftLogo {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mainRight {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.headerOption {
+    height: 100%;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.headerOptionLogo {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.headerOptionText {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 6px;
+}

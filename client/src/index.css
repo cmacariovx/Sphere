@@ -8,7 +8,7 @@
     line-height: 1.25;
     font-weight: 400;
     text-decoration: none;
-    text-rendering: geometricPrecision;
+    text-rendering: optimizeLegibility;
     shape-rendering: geometricPrecision;
     image-rendering: optimizeQuality;
     border: none;

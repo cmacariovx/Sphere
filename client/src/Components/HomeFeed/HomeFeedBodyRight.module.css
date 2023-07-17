@@ -1,0 +1,64 @@
+.homeFeedBodyRight {
+    position: sticky;
+    min-height: 1000px;
+    height: 100%;
+    width: 30%;
+    top: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-left: var(--gray) solid 1.4px;
+}
+
+.profileBanner {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+}
+
+.profilePicture {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: white;
+    border: var(--gray) solid 4px;
+    position: absolute;
+    left: 44px;
+    top: 44px;
+}
+
+.profileBody {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.profileInfo {
+    margin-top: 60px;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.profileName {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.profileTitle {
+    font-size: 15px;
+    color: var(--darkGray);
+    margin-top: 6px;
+}

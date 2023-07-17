@@ -1,0 +1,14 @@
+:root {
+    --black: #222222;
+    --blue: #2c7be5;
+}
+
+.app {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(243, 242, 239, 1);
+}

@@ -5,6 +5,12 @@ function MainHeader() {
         <div className={styles.mainHeader}>
             <div className={styles.mainLeft}>
                 <p className={styles.mainLeftLogo}>Sphere</p>
+                <div className={styles.inputContainer}>
+                    <i className={`${styles.searchIcon} fa-solid fa-magnifying-glass`}></i>
+                    <input className={styles.input}
+                        placeholder='Search'
+                    />
+                </div>
             </div>
             <div className={styles.mainRight}>
                 <div className={styles.headerOption}>

@@ -1,10 +1,11 @@
 import styles from './CreatePost.module.css';
+import profilePicture from '../../Assets/profile.jpg';
 
 function CreatePost() {
     return (
         <div className={styles.createPost}>
             <div className={styles.createPostLeft}>
-                <div className={styles.profilePicture}></div>
+                <img src={profilePicture} className={styles.profilePicture} />
             </div>
             <div className={styles.createPostRight}>
                 <input className={styles.input}

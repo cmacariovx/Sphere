@@ -7,31 +7,32 @@
     align-items: center;
     border-bottom: var(--gray) solid 1.4px;
     padding-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .createPostLeft {
     height: 100%;
-    width: 12%;
+    width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .profilePicture {
-    height: 44px;
-    width: 44px;
+    height: 46px;
+    width: 46px;
     border-radius: 50%;
-    background-color: var(--black);
+    background-color: var(--gray);
 }
 
 .createPostRight {
     height: 100%;
-    width: 88%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .input {
@@ -78,5 +79,5 @@
 .buttonText {
     font-size: 14px;
     color: var(--black);
-    font-weight: bold;
+    font-weight: 500;
 }

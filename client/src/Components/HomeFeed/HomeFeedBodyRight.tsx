@@ -1,10 +1,11 @@
 import styles from './HomeFeedBodyRight.module.css';
+import profilePicture from '../../Assets/profile.jpg';
 
 function HomeFeedBodyRight() {
     return (
         <div className={styles.homeFeedBodyRight}>
             <div className={styles.profileBanner}></div>
-            <div className={styles.profilePicture}></div>
+            <img src={profilePicture} className={styles.profilePicture} />
 
             <div className={styles.profileBody}>
                 <div className={styles.profileInfo}>

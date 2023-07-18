@@ -1,0 +1,312 @@
+.createPostModalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 150px;
+    overflow-y: auto;
+}
+
+.createPostModal {
+    /* height: 600px; */
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 10px;
+    background-color: white;
+    padding: 40px;
+    position: relative;
+    /* overflow-y: auto; */
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray);
+}
+
+.headerLeft {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.headerLeftLeft {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profilePicture {
+    min-height: 52px;
+    min-width: 52px;
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: var(--gray);
+}
+
+.headerLeftRight {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.headerName {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.headerTitle {
+    font-size: 15px;
+    color: var(--darkGray);
+}
+
+.headerRight {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.headerDate {
+    font-size: 14px;
+    color: var(--darkGray);
+}
+
+.headerRightDropdownToggle {
+    width: 280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--lightGray);
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid var(--gray);
+    margin-right: 20px;
+    user-select: none;
+    z-index: 98;
+}
+
+.headerRightDropdownItem {
+    width: 280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--lightGray);
+    cursor: pointer;
+    padding: 8px;
+    border-bottom: 1px solid var(--gray);
+    transition: 0.1s linear;
+}
+
+.headerRightDropdownItem:hover {
+    transition: 0.1s linear;
+    background-color: white;
+}
+
+.dropdownTogglePic {
+    min-height: 32px;
+    min-width: 32px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-color: var(--gray);
+}
+
+.dropdownToggleName {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+
+.dropdownItemPic {
+    min-height: 32px;
+    min-width: 32px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-color: var(--gray);
+}
+
+.dropdownItemName {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+
+.buttonIconX {
+    font-size: 24px;
+    color: var(--darkGray);
+    padding: 10px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.1s linear;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.buttonIconX:hover {
+    transition: 0.1s linear;
+    background-color: var(--gray);
+}
+
+.headerRightDropdownBackdrop {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    z-index: 97;
+}
+
+.headerRightDropdown {
+    height: 100%;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 54px;
+    right: 20px;
+    border-radius: 5px;
+    background-color: var(--lightGray);
+    z-index: 98;
+}
+
+.modalBody {
+    min-height: 400px;
+    height: 100%;
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.modalBodyTitle {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: var(--lightGray);
+    border-radius: 5px;
+    padding: 12px 20px;
+    border: 1px solid var(--gray);
+    margin-bottom: 20px;
+}
+
+.modalBodyText {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 17px;
+    background-color: var(--lightGray);
+    border-radius: 5px;
+    padding: 12px 20px;
+    border: 1px solid var(--gray);
+    resize: none;
+    overflow-y: auto;
+}
+
+.modalBodyTitle::placeholder {
+    font-weight: 400;
+}
+
+.modalBodyText::placeholder {
+    font-weight: 400;
+}
+
+.modalFooter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.button {
+    height: 40px;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: var(--gray) solid 1.4px;
+    border-radius: 6px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.buttonIcon {
+    font-size: 18px;
+    color: var(--darkGray);
+    margin-right: 10px;
+}
+
+.buttonText {
+    font-size: 14px;
+    color: var(--black);
+    font-weight: 500;
+}
+
+.selectedFileContainer {
+    max-height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.selectedFile {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    object-fit: contain;
+}

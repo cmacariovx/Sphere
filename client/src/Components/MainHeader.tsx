@@ -9,6 +9,7 @@ function MainHeader() {
                     <i className={`${styles.searchIcon} fa-solid fa-magnifying-glass`}></i>
                     <input className={styles.input}
                         placeholder='Search'
+                        maxLength={50}
                     />
                 </div>
             </div>

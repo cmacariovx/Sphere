@@ -1,13 +1,11 @@
 .createPost {
-    height: 140px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     border-bottom: var(--gray) solid 1.4px;
-    padding-bottom: 20px;
-    margin-bottom: 40px;
+    padding-bottom: 24px;
 }
 
 .createPostLeft {
@@ -20,6 +18,8 @@
 }
 
 .profilePicture {
+    min-height: 46px;
+    min-width: 46px;
     height: 46px;
     width: 46px;
     border-radius: 50%;
@@ -35,17 +35,19 @@
     align-items: flex-start;
 }
 
-.input {
+.inputButton {
     height: 50px;
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-color: rgba(242, 242, 242, 0.8);
+    background-color: var(--lightGray);
     border-radius: 6px;
     border: var(--gray) solid 1px;
     padding: 5px 20px;
+    color: var(--darkGray);
+    cursor: text;
 }
 
 .buttons {
@@ -72,7 +74,7 @@
 
 .buttonIcon {
     font-size: 18px;
-    color: var(--blue);
+    color: var(--darkGray);
     margin-right: 10px;
 }
 

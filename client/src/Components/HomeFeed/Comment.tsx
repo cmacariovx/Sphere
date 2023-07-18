@@ -1,16 +1,13 @@
-import styles from './Post.module.css';
+import styles from './Comment.module.css';
 import profilePicture from '../../Assets/profile.jpg';
-import test1 from '../../Assets/test1.png';
-import test2 from '../../Assets/test2.png';
-import Comment from './Comment';
 import { useState } from 'react';
 
-function Post() {
-    const [showComments, setShowComments] = useState(false);
+function Comment({level = 0}: {level?: number}) {
+    const [showComments, setShowComments] = useState(true);
     const [showReport, setShowReport] = useState(false);
 
     return (
-        <div className={styles.post}>
+        <div className={styles.comment}>
             <div className={styles.header}>
                 <div className={styles.headerLeft}>
                     <div className={styles.headerLeftLeft}>
@@ -26,9 +23,7 @@ function Post() {
                 </div>
             </div>
             <div className={styles.body}>
-                <p className={styles.bodyHeader}>Should I upload resume as PDF or Docx?</p>
                 <pre className={styles.bodyText}>{`Looking for some pointers on submitting my resume!`}</pre>
-                {/* <img src={test1} className={styles.postPicture} /> */}
             </div>
             <div className={styles.footer}>
                 <div className={styles.footerButton0}>
@@ -57,10 +52,12 @@ function Post() {
                 </div>}
             </div>
             {showComments && <div className={styles.comments}>
-                <Comment />
+                {level < 1 && (
+                    <Comment level={level + 1}/>
+                )}
             </div>}
         </div>
     )
 }
 
-export default Post;
+export default Comment;

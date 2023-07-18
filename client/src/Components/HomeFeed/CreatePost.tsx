@@ -1,27 +1,25 @@
 import styles from './CreatePost.module.css';
 import profilePicture from '../../Assets/profile.jpg';
+import { useState, useEffect } from 'react';
+import CreatePostModal from './CreatePostModal';
 
 function CreatePost() {
+    const [showCreatePostModal, setShowCreatePostModal] = useState(false);
+
+    useEffect(() => {
+        if (showCreatePostModal) document.body.classList.add('preventBgScroll');
+        if (!showCreatePostModal) document.body.classList.remove('preventBgScroll');
+    }, [showCreatePostModal]);
+
     return (
         <div className={styles.createPost}>
             <div className={styles.createPostLeft}>
                 <img src={profilePicture} className={styles.profilePicture} />
             </div>
             <div className={styles.createPostRight}>
-                <input className={styles.input}
-                    placeholder='Create a post'
-                />
-                <div className={styles.buttons}>
-                    <div className={styles.button}>
-                        <i className={`${styles.buttonIcon} fa-solid fa-image`}></i>
-                        <p className={styles.buttonText}>Photo</p>
-                    </div>
-                    <div className={styles.button}>
-                        <i className={`${styles.buttonIcon} fa-solid fa-share`}></i>
-                        <p className={styles.buttonText}>Post</p>
-                    </div>
-                </div>
+                <button className={styles.inputButton} onClick={() => setShowCreatePostModal(true)}>Create a post</button>
             </div>
+            {showCreatePostModal && <CreatePostModal closeModal={() => setShowCreatePostModal(false)}/>}
         </div>
     )
 }

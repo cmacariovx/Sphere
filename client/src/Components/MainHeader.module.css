@@ -4,12 +4,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--black);
+    background-color: var(--blue);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 5px 60px;
+    z-index: 99;
 }
 
 .mainLeft {
@@ -24,7 +25,7 @@
 .mainLeftLogo {
     font-size: 18px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--gray);
     margin-right: 20px;
 }
 
@@ -50,12 +51,12 @@
 
 .headerOptionLogo {
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--gray);
 }
 
 .headerOptionText {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--gray);
     margin-top: 8px;
 }
 
@@ -70,7 +71,7 @@
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--darkGray);
+    color: var(--gray);
 }
 
 .input {
@@ -84,4 +85,8 @@
     border-radius: 6px;
     padding: 5px 50px;
     color: white;
+}
+
+.input::placeholder {
+    color: var(--gray);
 }

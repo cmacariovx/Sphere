@@ -14,7 +14,7 @@
     width: 100%;
     object-fit: cover;
     object-position: center;
-    position: fixed;
+    position: absolute;
     top: 65px;
     left: 0;
     user-select: none;
@@ -41,6 +41,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid var(--gray);
+    padding-bottom: 20px;
+    z-index: 98;
 }
 
 .profileUpperUpper {
@@ -77,7 +80,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .profileName {
@@ -177,4 +180,268 @@
     font-size: 13px;
     color: white;
     font-weight: 500;
+}
+
+.lowerRightStat {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.lowerRightStatIcon0 {
+    font-size: 18px;
+    color: rgb(255, 225, 0);
+    width: 20px;
+    margin-right: 6px;
+}
+
+.lowerRightStatIcon1 {
+    font-size: 18px;
+    color: rgb(40, 140, 207);
+    width: 20px;
+    margin-right: 6px;
+}
+
+.lowerRightStatIcon2 {
+    font-size: 18px;
+    color: rgb(56, 173, 85);
+    width: 20px;
+    margin-right: 6px;
+}
+
+.lowerRightStatText {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mutualFriend {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mutualFriendPicture {
+    min-height: 32px;
+    min-width: 32px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.mutualFriendName {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--lightBlack);
+    cursor: pointer;
+}
+
+.profileLower {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 98;
+}
+
+.profileLowerLeft {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: 2px solid var(--gray);
+}
+
+.profileLowerRight {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profileAbout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 2px solid var(--gray);
+    padding-right: 20px;
+}
+
+.profileAboutHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.aboutTitle {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.aboutLinkContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.aboutLink {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    margin-right: 8px;
+}
+
+.aboutIcon {
+    font-size: 14px;
+    color: var(--blue);
+    margin-bottom: 1px;
+}
+
+.profileAboutBody {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileAboutText {
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.circles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.circlesTitle {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+     padding-top: 30px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+}
+
+.circlesList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.circlesListItem {
+    height: 54px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid var(--gray);
+    cursor: pointer;
+}
+
+.circlesListItemPicture {
+    min-height: 30px;
+    min-width: 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.circlesListItemText {
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 12px;
+}
+
+.circlesLock {
+    font-size: 16px;
+    color: var(--darkGray);
+    margin-bottom: 1px;
+}
+
+.profilePosts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 0;
+    padding-right: 20px;
+}
+
+.activityText {
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.profilePostsOptions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profilePostsOption {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.profilePostsOption1 {
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid var(--blue);
+}
+
+.profilePostsBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }

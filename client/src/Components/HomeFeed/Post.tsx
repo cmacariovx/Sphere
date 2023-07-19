@@ -18,7 +18,7 @@ function Post() {
                     </div>
                     <div className={styles.headerLeftRight}>
                         <p className={styles.headerName}>Carlos Macario</p>
-                        <p className={styles.headerTitle}>Founder of Sphere</p>
+                        <p className={styles.headerTitle}>Founder of Sphere - Software Engineering</p>
                     </div>
                 </div>
                 <div className={styles.headerRight}>

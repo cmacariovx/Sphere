@@ -41,7 +41,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid var(--gray);
     padding-bottom: 20px;
     z-index: 98;
 }
@@ -263,12 +262,17 @@
 }
 
 .profileLowerRight {
+    position: sticky;
+    min-height: 600px;
     height: 100%;
     width: 30%;
+    top: 85px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
+    border-top: 2px solid var(--gray);
 }
 
 .profileAbout {
@@ -278,6 +282,7 @@
     justify-content: flex-start;
     align-items: center;
     padding: 30px 0;
+    border-top: 2px solid var(--gray);
     border-bottom: 2px solid var(--gray);
     padding-right: 20px;
 }
@@ -423,6 +428,7 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
+    user-select: none;
 }
 
 .profilePostsOption1 {
@@ -436,6 +442,7 @@
     font-weight: 500;
     cursor: pointer;
     border-bottom: 2px solid var(--blue);
+    user-select: none;
 }
 
 .profilePostsBody {

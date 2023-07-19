@@ -2,9 +2,11 @@ import styles from './ProfileBody.module.css';
 import seattle from '../../Assets/seattle.png';
 import profilePicture from '../../Assets/profile.jpg';
 import Post from '../HomeFeed/Post';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 function ProfileBody() {
+    const [selectedActivity, setSelectedActivity] = useState(0);
+
     return (
         <Fragment>
             <img src={seattle} className={styles.profileBanner} />
@@ -71,9 +73,9 @@ function ProfileBody() {
                         <div className={styles.profilePosts}>
                             <p className={styles.activityText}>Activity</p>
                             <div className={styles.profilePostsOptions}>
-                                <p className={styles.profilePostsOption1}>Posts</p>
-                                <p className={styles.profilePostsOption}>Comments</p>
-                                <p className={styles.profilePostsOption}>Upvoted</p>
+                                <p className={selectedActivity == 0 ? styles.profilePostsOption1 : styles.profilePostsOption} onClick={() => {if (selectedActivity != 0) setSelectedActivity(0)}}>Posts</p>
+                                <p className={selectedActivity == 1 ? styles.profilePostsOption1 : styles.profilePostsOption} onClick={() => {if (selectedActivity != 1) setSelectedActivity(1)}}>Comments</p>
+                                <p className={selectedActivity == 2 ? styles.profilePostsOption1 : styles.profilePostsOption} onClick={() => {if (selectedActivity != 2) setSelectedActivity(2)}}>Upvoted</p>
                             </div>
                             <div className={styles.profilePostsBody}>
                                 <Post />

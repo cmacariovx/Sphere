@@ -6,6 +6,8 @@ import { Fragment, useState } from 'react';
 
 function ProfileBody() {
     const [selectedActivity, setSelectedActivity] = useState(0);
+    const [showTalks, setShowTalks] = useState(true);
+    const [showCircles, setShowCircles] = useState(true);
 
     return (
         <Fragment>
@@ -37,7 +39,13 @@ function ProfileBody() {
                     </div>
                     <div className={styles.profileUpperLower}>
                         <div className={styles.profileUpperLowerLeft}>
-                            <p className={styles.profileName}>Carlos Macario</p>
+                            <div className={styles.circleNameContainer}>
+                                <p className={styles.profileName}>Carlos Macario</p>
+                                <div className={styles.verifiedContainer}>
+                                    <i className={`${styles.verifiedBadge} fa-solid fa-certificate`}></i>
+                                    <i className={`${styles.verifiedCheck} fa-solid fa-check`}></i>
+                                </div>
+                            </div>
                             <pre className={styles.profileTitle}>Founder of Sphere  •  Software Engineering</pre>
                             <div className={styles.mutualFriend}>
                                 <img src={profilePicture} className={styles.mutualFriendPicture} />
@@ -87,8 +95,28 @@ function ProfileBody() {
                     </div>
                     <div className={styles.profileLowerRight}>
                         <div className={styles.circles}>
-                            <p className={styles.circlesTitle}>Circles</p>
-                            <div className={styles.circlesList}>
+                            <div className={styles.circlesToggle} onClick={() => setShowTalks(!showTalks)}>
+                                <p className={styles.circlesTitle}>Mainly Talks About</p>
+                                <i className={`${styles.circlesIcon} fa-solid ${showTalks ? 'fa-chevron-down' : 'fa-chevron-up'}`}></i>
+                            </div>
+                            {showTalks && <div className={styles.circlesList}>
+                                <div className={styles.circlesListItem}>
+                                    <p className={styles.circlesListItemText}>#softwareengineering</p>
+                                </div>
+                                <div className={styles.circlesListItem}>
+                                    <p className={styles.circlesListItemText}>#resumes</p>
+                                </div>
+                                <div className={styles.circlesListItem}>
+                                    <p className={styles.circlesListItemText}>#bayarea</p>
+                                </div>
+                            </div>}
+                        </div>
+                        <div className={styles.circles}>
+                            <div className={styles.circlesToggle} onClick={() => setShowCircles(!showCircles)}>
+                                <p className={styles.circlesTitle}>Circles</p>
+                                <i className={`${styles.circlesIcon} fa-solid ${showCircles ? 'fa-chevron-down' : 'fa-chevron-up'}`}></i>
+                            </div>
+                            {showCircles && <div className={styles.circlesList}>
                                 <div className={styles.circlesListItem}>
                                     <img src={profilePicture} className={styles.circlesListItemPicture} />
                                     <p className={styles.circlesListItemText}>Software Engineering</p>
@@ -102,7 +130,7 @@ function ProfileBody() {
                                     <img src={profilePicture} className={styles.circlesListItemPicture} />
                                     <p className={styles.circlesListItemText}>Technology</p>
                                 </div>
-                            </div>
+                            </div>}
                         </div>
                     </div>
                 </div>

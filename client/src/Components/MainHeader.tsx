@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './MainHeader.module.css';
 
 function MainHeader() {
+    const navigate = useNavigate();
+
     return (
         <div className={styles.mainHeader}>
             <div className={styles.mainLeft}>
@@ -14,7 +17,7 @@ function MainHeader() {
                 </div>
             </div>
             <div className={styles.mainRight}>
-                <div className={styles.headerOption}>
+                <div className={styles.headerOption} onClick={() => navigate('/home')}>
                     <i className={`${styles.headerOptionLogo} fa-solid fa-house`}></i>
                     <p className={styles.headerOptionText}>Home</p>
                 </div>
@@ -26,7 +29,7 @@ function MainHeader() {
                     <i className={`${styles.headerOptionLogo} fa-solid fa-comments`}></i>
                     <p className={styles.headerOptionText}>Messaging</p>
                 </div>
-                <div className={styles.headerOption}>
+                <div className={styles.headerOption} onClick={() => navigate('/profile')}>
                     <i className={`${styles.headerOptionLogo} fa-solid fa-user`}></i>
                     <p className={styles.headerOptionText}>Profile</p>
                 </div>

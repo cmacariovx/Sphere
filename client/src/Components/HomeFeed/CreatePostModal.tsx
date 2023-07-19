@@ -44,6 +44,7 @@ function CreatePostModal({ closeModal }: { closeModal: () => void; }) {
                 <div className={styles.modalBody}>
                     <input className={styles.modalBodyTitle} placeholder='Title' maxLength={60}/>
                     <textarea className={styles.modalBodyText} placeholder="What's on your mind?" maxLength={1200}/>
+                    <input className={styles.modalBodyHashtags} placeholder='#real' maxLength={60}/>
                 </div>
                 {selectedFile != null &&
                 <div className={styles.selectedFileContainer}>

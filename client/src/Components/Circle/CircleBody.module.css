@@ -1,4 +1,4 @@
-.profileBody {
+.circleBody {
     height: 100%;
     width: 100%;
     display: flex;
@@ -9,7 +9,7 @@
     position: relative;
 }
 
-.profileBanner {
+.circleBanner {
     height: 300px;
     width: 100%;
     object-fit: cover;
@@ -20,7 +20,7 @@
     user-select: none;
 }
 
-.profilePicture {
+.circlePicture {
     min-height: 148px;
     min-width: 148px;
     height: 148px;
@@ -34,7 +34,7 @@
     box-shadow: 0 0 20px rgba(132, 132, 132, 0.6);
 }
 
-.profileUpper {
+.circleUpper {
     margin-top: 300px;
     width: 100%;
     display: flex;
@@ -45,7 +45,7 @@
     z-index: 98;
 }
 
-.profileUpperUpper {
+.circleUpperUpper {
     height: 100px;
     width: 100%;
     display: flex;
@@ -55,7 +55,7 @@
     padding-left: 200px;
 }
 
-.profileUpperLower {
+.circleUpperLower {
     height: 100%;
     width: 100%;
     display: flex;
@@ -64,7 +64,7 @@
     align-items: center;
 }
 
-.profileUpperLowerLeft {
+.circleUpperLowerLeft {
     height: 100%;
     width: 50%;
     display: flex;
@@ -73,7 +73,7 @@
     align-items: flex-start;
 }
 
-.profileUpperLowerRight {
+.circleUpperLowerRight {
     height: 100%;
     width: 50%;
     display: flex;
@@ -82,20 +82,20 @@
     align-items: center;
 }
 
-.profileName {
+.circleName {
     font-size: 26px;
     font-weight: 600;
     margin-bottom: 8px;
     margin-right: 12px;
 }
 
-.profileTitle {
+.circleTitle {
     font-size: 15px;
     font-weight: 500;
     width: 100%;
 }
 
-.profileStats {
+.circleStats {
     height: 100%;
     width: 50%;
     display: flex;
@@ -104,26 +104,26 @@
     align-items: center;
 }
 
-.profileStat0 {
+.circleStat0 {
     font-size: 15px;
     font-weight: 500;
     color: var(--blue);
 }
 
-.profileStat1 {
+.circleStat1 {
     font-size: 15px;
     font-weight: 500;
     color: var(--lightBlack);
 }
 
 
-.profileDot {
+.circleDot {
     font-size: 14px;
     margin: 0 10px;
     color: var(--lightBlack);
 }
 
-.profileButtons {
+.circleButtons {
     height: 100%;
     width: 50%;
     display: flex;
@@ -241,7 +241,7 @@
     cursor: pointer;
 }
 
-.profileLower {
+.circleLower {
     height: 100%;
     width: 100%;
     display: flex;
@@ -251,7 +251,7 @@
     z-index: 98;
 }
 
-.profileLowerLeft {
+.circleLowerLeft {
     height: 100%;
     width: 70%;
     display: flex;
@@ -261,7 +261,7 @@
     border-right: 2px solid var(--gray);
 }
 
-.profileLowerRight {
+.circleLowerRight {
     position: sticky;
     min-height: 600px;
     height: 100%;
@@ -275,7 +275,7 @@
     border-top: 2px solid var(--gray);
 }
 
-.profileAbout {
+.circleAbout {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -287,7 +287,7 @@
     padding-right: 20px;
 }
 
-.profileAboutHeader {
+.circleAboutHeader {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -322,7 +322,7 @@
     margin-bottom: 1px;
 }
 
-.profileAboutBody {
+.circleAboutBody {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -330,7 +330,7 @@
     align-items: center;
 }
 
-.profileAboutText {
+.circleAboutText {
     font-size: 14px;
     white-space: pre-wrap;
 }
@@ -373,7 +373,6 @@
 }
 
 .circlesListItem {
-    height: 54px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -381,6 +380,7 @@
     align-items: center;
     border-bottom: 1px solid var(--gray);
     cursor: pointer;
+    padding: 16px 0;
 }
 
 .circlesListItemPicture {
@@ -399,12 +399,12 @@
 }
 
 .circlesLock {
-    font-size: 16px;
+    font-size: 20px;
     color: var(--darkGray);
-    margin-bottom: 1px;
+    margin-bottom: 4px;
 }
 
-.profilePosts {
+.circlePosts {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -421,7 +421,7 @@
     margin-bottom: 20px;
 }
 
-.profilePostsOptions {
+.circlePostsOptions {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -429,7 +429,7 @@
     align-items: center;
 }
 
-.profilePostsOption {
+.circlePostsOption {
     padding: 12px 0;
     display: flex;
     flex-direction: row;
@@ -442,7 +442,7 @@
     user-select: none;
 }
 
-.profilePostsOption1 {
+.circlePostsOption1 {
     padding: 12px 0;
     display: flex;
     flex-direction: row;
@@ -456,7 +456,7 @@
     user-select: none;
 }
 
-.profilePostsBody {
+.circlePostsBody {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -481,12 +481,20 @@
     font-size: 14px;
     font-weight: 500;
     margin-right: 8px;
-    color: var(--lightBlack);
+    color: var(--lightBlack)
 }
 
 .showMoreIcon {
     font-size: 15px;
     color: var(--lightBlack);
+}
+
+.circleNameContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .verifiedContainer {
@@ -496,6 +504,7 @@
     align-items: center;
     position: relative;
     user-select: none;
+    margin-right: 12px;
 }
 
 .verifiedBadge {
@@ -509,12 +518,4 @@
     color: white;
     margin-bottom: 5px;
     position: absolute;
-}
-
-.circleNameContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
 }

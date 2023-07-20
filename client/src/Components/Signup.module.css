@@ -1,0 +1,141 @@
+.signupBackdrop {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 200px;
+}
+
+.signup {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.signupTitle {
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.inputContainer {
+    padding: 12px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer1 {
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputLabel {
+    font-size: 14px;
+    color: var(--darkGray);
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.input {
+    height: 44px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 16px;
+    border-radius: 5px;
+    background-color: var(--lightGray);
+    font-size: 15px;
+    border: 1px solid var(--gray);
+}
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 40px;
+    border: 2px solid var(--darkGray);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.1s linear;
+    margin: 20px 0;
+    margin-right: 12px;
+}
+
+input[type="checkbox"]:checked {
+    transition: 0.1s linear;
+    background-color: var(--blue);
+    border-color: var(--blue);
+}
+
+.button {
+    height: 44px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+}
+
+.switch {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--blue);
+    cursor: pointer;
+}
+
+.passwordInput {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.passwordIcon {
+    position: absolute;
+    right: 20px;
+    color: var(--darkGray);
+    cursor: pointer;
+}
+
+.inputError {
+    font-size: 12px;
+    color: red;
+    width: 100%;
+    margin: 6px 0;
+}
+
+.checkRow {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}

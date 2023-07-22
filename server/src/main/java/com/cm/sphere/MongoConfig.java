@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 public class MongoConfig {
     @Bean
     public MongoClient mongoClient() {
-        String connectionString = AwsSecretManager.getSecret().getMongoDBString();
+        String connectionString = AwsSecretManager.getSecretMongo().getMongoDBString();
 
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)

@@ -1,14 +1,11 @@
 package com.cm.sphere.model.User;
 
+import java.util.ArrayList;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 @Document(collection = "users")
 public class User {
@@ -16,21 +13,15 @@ public class User {
     private ObjectId id;
 
     @Field(name = "firstName")
-    @Size(min = 2, max = 20)
     private String firstName;
 
     @Field(name = "lastName")
-    @Size(min = 2, max = 20)
     private String lastName;
 
     @Field(name = "email")
-    @Email
-    @NotEmpty
     private String email;
 
     @Field(name = "hashedPassword")
-    @Size(min = 8, max = 40)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$")
     private String hashedPassword;
 
     @Field(name = "assets")
@@ -45,6 +36,9 @@ public class User {
     @Field(name = "interests")
     private Interests interests;
 
+    @Field(name = "roles")
+    private ArrayList<String> roles;
+
     public User(String firstName, String lastName, String email, String hashedPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,5 +48,74 @@ public class User {
         this.activity = new Activity();
         this.verification = new Verification();
         this.interests = new Interests();
+        this.roles = new ArrayList<>();
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public String getStringId() {
+        return id.toString();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public Verification getVerification() {
+        return verification;
+    }
+
+    public Interests getInterests() {
+        return interests;
+    }
+
+    public ArrayList<String> getRoles() {
+        return roles;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setHashedPassword(String hashedPassword) {
+        this.hashedPassword = hashedPassword;
+    }
+
+    public void addRole(String role) {
+        this.roles.add(role);
     }
 }

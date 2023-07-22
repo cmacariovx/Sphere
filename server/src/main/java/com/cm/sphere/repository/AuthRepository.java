@@ -1,9 +1,14 @@
 package com.cm.sphere.repository;
 
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import com.cm.sphere.exception.UserAlreadyExistsException;
+import com.cm.sphere.model.Security.AuthUser;
+import com.cm.sphere.model.User.User;
 
 @Repository
 public class AuthRepository {
@@ -14,14 +19,15 @@ public class AuthRepository {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public Map<String, Object> signup(Map<String, Object> data) {
-        try {
-            Map<String, Object> result = this.mongoTemplate.insert(data, "users");
-            return result;
+    public AuthUser signup(User user) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").is(user.getEmail()));
+
+        if (this.mongoTemplate.exists(query, AuthUser.class)) {
+            throw new UserAlreadyExistsException("A user with this email already exists.");
         }
-        catch (Exception err) {
-            System.out.println("Auth Repository: Signup: " + err.getMessage());
-            throw new RuntimeException("Could not signup.", err);
-        }
+
+        User savedUser = this.mongoTemplate.save(user);
+        return new AuthUser(savedUser.getId(), savedUser.getHashedPassword(), savedUser.getRoles());
     }
 }

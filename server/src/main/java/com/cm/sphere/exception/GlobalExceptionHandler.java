@@ -17,7 +17,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<Object> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
         Map<String, String> error = new HashMap<>();
-        error.put("error", ex.getMessage());
+        error.put("error", "An unexpected error occurred. Please try again later.");
+        logger.error("An unexpected error occurred", ex);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
@@ -25,9 +26,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleGenericException(Exception ex) {
         Map<String, String> error = new HashMap<>();
         error.put("error", "An unexpected error occurred. Please try again later.");
-
         logger.error("An unexpected error occurred", ex);
-
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -69,7 +69,7 @@ function Signup(props: any) {
             console.log(data);
             setIsLoading(false);
         }
-        catch(err) {
+        catch (err) {
             console.log(err);
         }
     }

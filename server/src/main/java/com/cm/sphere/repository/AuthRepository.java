@@ -31,3 +31,4 @@ public class AuthRepository {
         return new AuthUser(savedUser.getId(), savedUser.getHashedPassword(), savedUser.getRoles());
     }
 }
+ 

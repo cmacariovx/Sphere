@@ -3,16 +3,23 @@ import { useEffect, useState } from 'react';
 import styles from './MainHeader.module.css';
 import Signup from './Signup';
 import Login from './Login';
+import { useSelector } from 'react-redux';
+import { RootState } from '../Redux/store';
 
 function MainHeader() {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
     const navigate = useNavigate();
+    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
     useEffect(() => {
         if (showLogin || showSignup) document.body.classList.add('preventBgScroll');
         if (!showLogin && !showSignup) document.body.classList.remove('preventBgScroll');
-    }, [showLogin, showSignup]);
+        if (isLoggedIn) {
+            setShowLogin(false);
+            setShowSignup(false);
+        }
+    }, [showLogin, showSignup, isLoggedIn]);
 
     return (
         <div className={styles.mainHeader}>

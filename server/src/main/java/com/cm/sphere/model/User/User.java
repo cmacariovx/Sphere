@@ -18,6 +18,9 @@ public class User {
     @Field(name = "lastName")
     private String lastName;
 
+    @Field(name = "about")
+    private String about;
+
     @Field(name = "email")
     private String email;
 
@@ -42,6 +45,7 @@ public class User {
     public User(String firstName, String lastName, String email, String hashedPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.about = null;
         this.email = email;
         this.hashedPassword = hashedPassword;
         this.assets = new Assets();
@@ -52,47 +56,51 @@ public class User {
     }
 
     public ObjectId getId() {
-        return id;
+        return this.id;
     }
 
     public String getStringId() {
-        return id.toString();
+        return this.id.toString();
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
+    }
+
+    public String getAbout() {
+        return this.about;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public String getHashedPassword() {
-        return hashedPassword;
+        return this.hashedPassword;
     }
 
     public Assets getAssets() {
-        return assets;
+        return this.assets;
     }
 
     public Activity getActivity() {
-        return activity;
+        return this.activity;
     }
 
     public Verification getVerification() {
-        return verification;
+        return this.verification;
     }
 
     public Interests getInterests() {
-        return interests;
+        return this.interests;
     }
 
     public ArrayList<String> getRoles() {
-        return roles;
+        return this.roles;
     }
 
     public void setId(ObjectId id) {
@@ -105,6 +113,10 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setAbout (String about) {
+        this.about = about;
     }
 
     public void setEmail(String email) {

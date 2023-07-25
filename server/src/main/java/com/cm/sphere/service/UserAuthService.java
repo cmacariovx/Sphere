@@ -20,10 +20,8 @@ public class UserAuthService implements UserDetailsService {
 
     @Override
     public AuthUserDetails loadUserByUsername(String userId) {
-        AuthUser user = userRepository.findUserById(userId);
-
+        final AuthUser user = userRepository.findUserById(userId);
         if (user == null) throw new UsernameNotFoundException("User not found with id: " + userId);
-
         return new AuthUserDetails(user.getStringId(), user.getHashedPassword(), user.getRoles());
     }
 }

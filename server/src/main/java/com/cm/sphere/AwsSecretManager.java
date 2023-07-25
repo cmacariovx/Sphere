@@ -46,8 +46,8 @@ public class AwsSecretManager {
     }
 
     public static DatabaseCredentials getSecretMongo() {
-        String secretName = "mongoDBString";
-        Region region = Region.of("us-east-1");
+        final String secretName = "mongoDBString";
+        final Region region = Region.of("us-east-1");
 
         SecretsManagerClient client = SecretsManagerClient.builder()
                 .region(region)
@@ -66,9 +66,8 @@ public class AwsSecretManager {
             throw e;
         }
 
-        String secretString = getSecretValueResponse.secretString();
-
-        ObjectMapper mapper = new ObjectMapper();
+        final String secretString = getSecretValueResponse.secretString();
+        final ObjectMapper mapper = new ObjectMapper();
 
         try {
             return mapper.readValue(secretString, DatabaseCredentials.class);
@@ -78,8 +77,8 @@ public class AwsSecretManager {
     }
 
     public static SecretKeys getTokenSecretKeys() {
-        String secretName = "tokenSecretKeys";
-        Region region = Region.of("us-east-1");
+        final String secretName = "tokenSecretKeys";
+        final Region region = Region.of("us-east-1");
 
         SecretsManagerClient client = SecretsManagerClient.builder()
                 .region(region)
@@ -98,9 +97,8 @@ public class AwsSecretManager {
             throw e;
         }
 
-        String secretString = getSecretValueResponse.secretString();
-
-        ObjectMapper mapper = new ObjectMapper();
+        final String secretString = getSecretValueResponse.secretString();
+        final ObjectMapper mapper = new ObjectMapper();
 
         try {
             return mapper.readValue(secretString, SecretKeys.class);

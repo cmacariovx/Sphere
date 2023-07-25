@@ -17,13 +17,13 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 public class MongoConfig {
     @Bean
     public MongoClient mongoClient() {
-        String connectionString = AwsSecretManager.getSecretMongo().getMongoDBString();
+        final String connectionString = AwsSecretManager.getSecretMongo().getMongoDBString();
 
-        ServerApi serverApi = ServerApi.builder()
+        final ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
                 .build();
 
-        MongoClientSettings settings = MongoClientSettings.builder()
+        final MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(connectionString))
                 .serverApi(serverApi)
                 .build();

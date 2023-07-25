@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.cm.sphere.AwsSecretManager;
 import com.cm.sphere.AwsSecretManager.SecretKeys;
-import com.cm.sphere.model.Security.AuthUser;
+import com.cm.sphere.exception.ExpiredAccessTokenException;
+import com.cm.sphere.exception.TamperedJwtException;
 import com.cm.sphere.model.Security.AuthUserDetails;
 
 import java.nio.charset.StandardCharsets;
@@ -25,7 +26,7 @@ import org.slf4j.LoggerFactory;
 public class JwtTokenUtil {
     private final String refreshSecretKey;
     private final String accessSecretKey;
-    private final long refreshTokenExpiration = Duration.ofDays(7).getSeconds();
+    private final long refreshTokenExpiration = Duration.ofDays(14).getSeconds();
     private final long accessTokenExpiration = Duration.ofMinutes(30).getSeconds();
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
 
@@ -35,9 +36,10 @@ public class JwtTokenUtil {
         this.accessSecretKey = secretTokenKeys.getAccessTokenSecretKey();
     }
 
-    public Boolean validateToken(String token, AuthUserDetails userDetails, int tokenType) {
+    public void validateToken(String token, AuthUserDetails userDetails, int tokenType) {
         final String id = getIdFromToken(token, tokenType);
-        return (id.equals(userDetails.getId()) && !isTokenExpired(token, tokenType));
+        if (!id.equals(userDetails.getId())) throw new TamperedJwtException();
+        if (isTokenExpired(token, tokenType)) throw new ExpiredAccessTokenException();
     }
 
     public String getIdFromToken(String token, int tokenType) {
@@ -90,14 +92,14 @@ public class JwtTokenUtil {
         }
     }
 
-    public String generateToken(AuthUser userDetails, int tokenType) {
+    public String generateToken(String userId, int tokenType) {
         final String tokenKey = (tokenType == 0 ? this.refreshSecretKey : this.accessSecretKey);
         final long tokenExpiration = (tokenType == 0 ? this.refreshTokenExpiration : this.accessTokenExpiration);
         final Map<String, Object> claims = new HashMap<>();
 
         claims.put("token_type", tokenType);
 
-        return createToken(claims, userDetails.getStringId(), tokenKey, tokenExpiration);
+        return createToken(claims, userId, tokenKey, tokenExpiration);
     }
 
     private String createToken(Map<String, Object> claims, String subject, String secretKey, long tokenExpiration) {

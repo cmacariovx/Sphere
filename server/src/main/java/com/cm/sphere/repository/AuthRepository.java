@@ -20,15 +20,14 @@ public class AuthRepository {
     }
 
     public AuthUser signup(User user) {
-        Query query = new Query();
+        final Query query = new Query();
         query.addCriteria(Criteria.where("email").is(user.getEmail()));
 
         if (this.mongoTemplate.exists(query, AuthUser.class)) {
-            throw new UserAlreadyExistsException("A user with this email already exists.");
+            throw new UserAlreadyExistsException();
         }
 
-        User savedUser = this.mongoTemplate.save(user);
+        final User savedUser = this.mongoTemplate.save(user);
         return new AuthUser(savedUser.getId(), savedUser.getHashedPassword(), savedUser.getRoles());
     }
 }
- 

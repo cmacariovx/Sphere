@@ -23,18 +23,18 @@ public class AuthService {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    public Map<String, String> signup(SignupRequest data) {
-        final String firstName = data.getFirstName();
-        final String lastName = data.getLastName();
-        final String email = data.getEmail();
-        final String password = data.getPassword();
+    public Map<String, String> signup(SignupRequest request) {
+        final String firstName = request.getFirstName();
+        final String lastName = request.getLastName();
+        final String email = request.getEmail();
+        final String password = request.getPassword();
         final String hashedPassword = passwordEncoder.encode(password);
 
         final User newUser = new User(firstName, lastName, email, hashedPassword);
         final AuthUser authUser = authRepository.signup(newUser);
 
-        final String refreshToken = jwtTokenUtil.generateToken(authUser, 0);
-        final String accessToken = jwtTokenUtil.generateToken(authUser, 1);
+        final String refreshToken = jwtTokenUtil.generateToken(authUser.getStringId(), 0);
+        final String accessToken = jwtTokenUtil.generateToken(authUser.getStringId(), 1);
 
         final Map<String, String> response = new HashMap<>();
         response.put("message", "Signup successful.");

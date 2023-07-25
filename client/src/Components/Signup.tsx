@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
 import styles from './Signup.module.css';
+import { useDispatch } from 'react-redux';
+import { login } from '../Redux/slices/authSlice';
 
 function Signup(props: any) {
     const [isAgreed, setIsAgreed] = useState(false);
@@ -11,6 +13,8 @@ function Signup(props: any) {
     const lastNameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+
+    const dispatch = useDispatch();
 
     function isPasswordSecure(password: string) {
         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(password);
@@ -52,7 +56,7 @@ function Signup(props: any) {
         if (Object.keys(newErrors).length != 0) return;
 
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/auth/signup", {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "auth/signup", {
                 method: "POST",
                 body: JSON.stringify({
                     firstName: firstNameRef.current!.value.toLowerCase().trim(),
@@ -65,8 +69,10 @@ function Signup(props: any) {
                 }
             })
 
+            if (!response.ok) throw new Error("Signup was not successful, please try again.");
+
             const data = await response.json();
-            console.log(data);
+            dispatch(login(data.access_token));
             setIsLoading(false);
         }
         catch (err) {

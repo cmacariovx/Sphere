@@ -13,10 +13,12 @@ export function useFetchUserData() {
     useEffect(() => {
         if (isLoggedIn) return;
 
+        // handle 400 logout
+
         async function fetchUserData() {
             try {
                 setIsLoading(true);
-                const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/user/fetchBasicData", {
+                const response = await fetch("/api/user/fetchBasicData", {
                     method: "GET",
                     credentials: "include",
                 })
@@ -24,7 +26,7 @@ export function useFetchUserData() {
                 if (!response.ok) throw new Error("Refresh token is invalid.")
 
                 const data = await response.json();
-                dispatch(login(data.access_token));
+                dispatch(login(data.newAccessToken));
             }
             catch (err: any) {
                 setError(err.message);

@@ -11,7 +11,9 @@ import com.cm.sphere.AwsSecretManager.SecretKeys;
 import com.cm.sphere.exception.ExpiredAccessTokenException;
 import com.cm.sphere.exception.TamperedJwtException;
 import com.cm.sphere.model.Security.AuthUserDetails;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,8 +24,13 @@ import java.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Base64;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+
 @Component
 public class JwtTokenUtil {
+    private final SecretKeys secretTokenKeys;
     private final String refreshSecretKey;
     private final String accessSecretKey;
     private final long refreshTokenExpiration = Duration.ofDays(14).getSeconds();
@@ -31,9 +38,9 @@ public class JwtTokenUtil {
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
 
     public JwtTokenUtil() {
-        SecretKeys secretTokenKeys = AwsSecretManager.getTokenSecretKeys();
-        this.refreshSecretKey = secretTokenKeys.getRefreshTokenSecretKey();
-        this.accessSecretKey = secretTokenKeys.getAccessTokenSecretKey();
+        this.secretTokenKeys = AwsSecretManager.getTokenSecretKeys();
+        this.refreshSecretKey = this.secretTokenKeys.getRefreshTokenSecretKey();
+        this.accessSecretKey = this.secretTokenKeys.getAccessTokenSecretKey();
     }
 
     public void validateToken(String token, AuthUserDetails userDetails, int tokenType) {
@@ -75,20 +82,23 @@ public class JwtTokenUtil {
         }
         catch (Exception err) {
             logger.error("JwtTokenUtil - Extract all claims: " + err.getMessage());
-            throw new RuntimeException("Could not parse JWT token.", err);
+            throw new RuntimeException("Could not parse JWT token: " + token, err);
         }
     }
 
-    private Claims extractAllClaimsWithoutValidation(String token) {
+    public Claims extractAllClaimsWithoutValidation(String token) {
+        final String[] chunks = token.split("\\.");
+
+        final Base64.Decoder decoder = Base64.getDecoder();
+        final String payload = new String(decoder.decode(chunks[1]));
+
+        final ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return Jwts.parserBuilder()
-                        .build()
-                        .parseClaimsJws(token)
-                        .getBody();
+            final Map<String, Object> claimsMap = objectMapper.readValue(payload, new TypeReference<Map<String, Object>>(){});
+            return Jwts.claims(claimsMap);
         }
-        catch (Exception err) {
-            logger.error("JwtTokenUtil - Extract all claims w/o validation: " + err.getMessage());
-            throw new RuntimeException("Could not parse JWT token.", err);
+        catch (final IOException e) {
+            throw new RuntimeException("Failed to decode and map payload", e);
         }
     }
 

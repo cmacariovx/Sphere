@@ -24,11 +24,11 @@ public class Verification {
         this.dateVerified = null;
     }
 
-    public boolean getValidated() {
+    public boolean isValidated() {
         return this.validated;
     }
 
-    public boolean getVerified() {
+    public boolean isVerified() {
         return this.verified;
     }
 

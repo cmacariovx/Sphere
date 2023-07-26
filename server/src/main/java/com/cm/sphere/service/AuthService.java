@@ -38,8 +38,8 @@ public class AuthService {
 
         final Map<String, String> response = new HashMap<>();
         response.put("message", "Signup successful.");
-        response.put("refresh_token", refreshToken);
-        response.put("access_token", accessToken);
+        response.put("refreshToken", refreshToken);
+        response.put("accessToken", accessToken);
 
         return response;
     }

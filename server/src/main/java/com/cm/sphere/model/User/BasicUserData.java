@@ -1,16 +1,25 @@
 package com.cm.sphere.model.User;
 
 public class BasicUserData {
-    private String firstName;
-    private String lastName;
-    private String about;
-    private String mainInterest;
-    private String profilePictureUrl;
-    private String bannerPictureUrl;
-    private boolean validated;
-    private boolean verified;
+    private final String firstName;
+    private final String lastName;
+    private final String about;
+    private final String mainInterest;
+    private final String profilePictureUrl;
+    private final String bannerPictureUrl;
+    private final boolean validated;
+    private final boolean verified;
 
-    public BasicUserData() {}
+    public BasicUserData(String firstName, String lastName, String about, String mainInterest, String profilePictureUrl, String bannerPictureUrl, boolean validated, boolean verified) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.about = about;
+        this.mainInterest = mainInterest;
+        this.profilePictureUrl = profilePictureUrl;
+        this.bannerPictureUrl = bannerPictureUrl;
+        this.validated = validated;
+        this.verified = verified;
+    }
 
     public String getFirstName() {
         return this.firstName;
@@ -42,37 +51,5 @@ public class BasicUserData {
 
     public boolean isVerified() {
         return this.verified;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
-    public void setMainInterest(String mainInterest) {
-        this.mainInterest = mainInterest;
-    }
-
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
-    }
-
-    public void setBannerPictureUrl(String bannerPictureUrl) {
-        this.bannerPictureUrl = bannerPictureUrl;
-    }
-
-    public void setValidated(boolean validated) {
-        this.validated = validated;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
     }
 }

@@ -11,10 +11,10 @@ public class Activity {
     private Posts posts;
 
     @Field(name = "upvotedIds")
-    private final ArrayList<ObjectId> upvotedIds;
+    private ArrayList<ObjectId> upvotedIds;
 
     @Field(name = "commentIds")
-    private final ArrayList<ObjectId> commentIds;
+    private ArrayList<ObjectId> commentIds;
 
     @Field(name = "lastLogin")
     private Instant lastLogin;
@@ -52,6 +52,14 @@ public class Activity {
 
     public void setPosts(Posts posts) {
         this.posts = posts;
+    }
+
+    public void setUpvotedIds(ArrayList<ObjectId> upvotedIds) {
+        this.upvotedIds = upvotedIds;
+    }
+
+    public void setCommentIds(ArrayList<ObjectId> commentIds) {
+        this.commentIds = commentIds;
     }
 
     public void addUpvotedId(ObjectId upvotedId) {

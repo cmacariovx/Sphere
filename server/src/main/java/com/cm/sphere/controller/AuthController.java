@@ -35,14 +35,14 @@ public class AuthController {
 
         final Cookie cookie = new Cookie("refresh_token", tokens.get("refresh_token"));
         cookie.setHttpOnly(true);
-        // cookie.setSecure(true);
         cookie.setPath("/");
         cookie.setMaxAge((int) Duration.ofDays(14).getSeconds());
         cookie.setAttribute("SameSite", "Lax");
+        // cookie.setSecure(true);
 
         response.addCookie(cookie);
 
-        tokens.remove("refresh_token");
+        tokens.remove("refreshToken");
         return new ResponseEntity<>(tokens, HttpStatus.OK);
     }
 }

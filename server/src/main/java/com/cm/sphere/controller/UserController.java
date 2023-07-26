@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/fetchBasicData")
-    public ResponseEntity<Object> signup(HttpServletRequest request) {
+    public ResponseEntity<Object> fetchBasicData(HttpServletRequest request) {
         final BasicUserDataAndToken basicUserDataAndToken = this.userService.fetchBasicUserData(request);
         return new ResponseEntity<>(basicUserDataAndToken, HttpStatus.OK);
     }

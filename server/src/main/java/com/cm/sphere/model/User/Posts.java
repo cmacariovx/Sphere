@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Posts {
     @Field(name = "postIds")
-    private final ArrayList<ObjectId> postIds;
+    private ArrayList<ObjectId> postIds;
 
     @Field(name = "totalUpvotes")
     private int totalUpvotes;
@@ -47,6 +47,26 @@ public class Posts {
 
     public int getTotalShares() {
         return this.totalShares;
+    }
+
+    public void setPostIds(ArrayList<ObjectId> postIds) {
+        this.postIds = postIds;
+    }
+
+    public void setTotalUpvotes(int totalUpvotes) {
+        this.totalUpvotes = totalUpvotes;
+    }
+
+    public void setTotalDownvotes(int totalDownvotes) {
+        this.totalDownvotes = totalDownvotes;
+    }
+
+    public void setTotalComments(int totalComments) {
+        this.totalComments = totalComments;
+    }
+
+    public void setTotalShares(int totalShares) {
+        this.totalShares = totalShares;
     }
 
     public void addPostId(ObjectId id) {

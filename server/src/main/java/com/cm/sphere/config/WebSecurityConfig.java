@@ -21,19 +21,24 @@ public class WebSecurityConfig {
     private final UserAuthService userAuthService;
     private final JwtRequestFilter jwtRequestFilter;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    public WebSecurityConfig(UserAuthService userAuthService, JwtRequestFilter jwtRequestFilter, PasswordEncoder passwordEncoder) {
+    public WebSecurityConfig(UserAuthService userAuthService, JwtRequestFilter jwtRequestFilter, PasswordEncoder passwordEncoder, JwtTokenUtil jwtTokenUtil) {
         this.userAuthService = userAuthService;
         this.jwtRequestFilter = jwtRequestFilter;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.authenticationProvider(new JwtAuthProvider(jwtTokenUtil, userAuthService))
+            .csrf(csrf -> csrf.disable())
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-            .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+            .authorizeHttpRequests(auth ->
+                auth.requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/user/fetchBasicData").permitAll()
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))

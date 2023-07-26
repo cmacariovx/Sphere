@@ -11,13 +11,13 @@ public class Interests {
     private String mainInterest;
 
     @Field(name = "interestsCount")
-    private final HashMap<String, Integer> interestsCount;
+    private HashMap<String, Integer> interestsCount;
 
     @Field(name = "topInterests")
-    private final ArrayList<String> topInterests;
+    private ArrayList<String> topInterests;
 
     @Field(name = "circleIds")
-    private final ArrayList<ObjectId> circleIds;
+    private ArrayList<ObjectId> circleIds;
 
     public Interests() {
         this.mainInterest = null;
@@ -44,6 +44,18 @@ public class Interests {
 
     public void setMainInterest(String mainInterest) {
         this.mainInterest = mainInterest;
+    }
+
+    public void setInterestsCount(HashMap<String, Integer> interestsCount) {
+        this.interestsCount = interestsCount;
+    }
+
+    public void setTopInterests(ArrayList<String> topInterests) {
+        this.topInterests = topInterests;
+    }
+
+    public void setCircleIds(ArrayList<ObjectId> circleIds) {
+        this.circleIds = circleIds;
     }
 
     public boolean updateInterestCount(String hashtag) {

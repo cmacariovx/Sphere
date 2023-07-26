@@ -1,7 +1,6 @@
 package com.cm.sphere.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -37,7 +36,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         try {
             final String requestURI = request.getRequestURI();
 
-            if (requestURI.startsWith("/api/auth/")) {
+            // more scalable solution needed, public controller possibly
+            if (requestURI.startsWith("/api/auth/") || requestURI.startsWith("/auth/") || requestURI.equals("/api/user/fetchBasicData") || requestURI.equals("/user/fetchBasicData")) {
                 chain.doFilter(request, response);
                 return;
             }
@@ -58,17 +58,16 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             final AuthUserDetails userDetails = this.userAuthService.loadUserByUsername(id);
             jwtTokenUtil.validateToken(accessToken, userDetails, tokenType);
 
-            final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-            new UsernamePasswordAuthenticationToken (userDetails, null, userDetails.getAuthorities());
+            final JwtAuthToken jwtAuthToken = new JwtAuthToken(userDetails, accessToken, userDetails.getAuthorities());
 
-            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            jwtAuthToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(jwtAuthToken);
 
             chain.doFilter(request, response);
         }
         catch (final BaseCustomAuthException ex) {
+            SecurityContextHolder.clearContext();
             this.customAuthenticationEntryPoint.commence(request, response, ex);
-            return;
         }
     }
 }

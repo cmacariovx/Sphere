@@ -1,9 +1,9 @@
-interface UserAuth {
-    access_token: string | null;
+export interface UserAuth {
+    accessToken: string | null;
     isLoggedIn: boolean;
 }
 
-interface access_token {
+export interface access_token {
     id: string;
     sub: string;
     exp: number;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cm.sphere.model.Security.AuthUser;
 import com.cm.sphere.model.User.BasicUserData;
+import com.cm.sphere.model.User.User;
 
 @Repository
 public class UserRepository {
@@ -28,12 +29,21 @@ public class UserRepository {
     public BasicUserData fetchBasicUserData(String userId) {
         final Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(userId));
-        query.fields().include("firstName").include("lastName").include("about")
-            .include("interests.mainInterest").include("assets.profilePictureUrl")
-            .include("assets.bannerPictureUrl").include("verification.validated")
-            .include("verification.verified");
 
-        final BasicUserData basicUserData = this.mongoTemplate.findOne(query, BasicUserData.class);
-        return basicUserData;
+        // optimize fetching instead of whole user object
+        final User user = this.mongoTemplate.findOne(query, User.class);
+
+        if (user == null) return null; // handle this case accordingly
+
+        return new BasicUserData(
+            user.getFirstName(),
+            user.getLastName(),
+            user.getAbout(),
+            user.getInterests().getMainInterest(),
+            user.getAssets().getProfilePictureUrl(),
+            user.getAssets().getBannerPictureUrl(),
+            user.getVerification().isValidated(),
+            user.getVerification().isVerified()
+        );
     }
 }

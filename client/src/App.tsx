@@ -4,8 +4,23 @@ import './global.css';
 import HomeFeed from './Pages/HomeFeed';
 import Profile from './Pages/Profile';
 import Circle from './Pages/Circle';
+import { useFetchUserData } from './Hooks/useFetchUserData';
+import { useDispatch } from 'react-redux';
+import { logout } from './Redux/slices/authSlice';
 
 function App() {
+    // const { isLoading, error } = useFetchUserData();
+    // const dispatch = useDispatch();
+
+    // if (error) {
+    //     return (
+    //         <div>
+    //             Error: {error}
+    //             <button onClick={() => dispatch(logout())}>Logout</button>
+    //         </div>
+    //     );
+    // }
+
     return (
         <div className="app">
             <Routes>

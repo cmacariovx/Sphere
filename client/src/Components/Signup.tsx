@@ -56,7 +56,7 @@ function Signup(props: any) {
         if (Object.keys(newErrors).length != 0) return;
 
         try {
-            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "auth/signup", {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/auth/signup", {
                 method: "POST",
                 body: JSON.stringify({
                     firstName: firstNameRef.current!.value.toLowerCase().trim(),

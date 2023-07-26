@@ -16,8 +16,8 @@ export function useFetchUserData() {
         async function fetchUserData() {
             try {
                 setIsLoading(true);
-                const response = await fetch(process.env.REACT_APP_BACKEND_URL + "user/fetchBasicData", {
-                    method: "POST",
+                const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/user/fetchBasicData", {
+                    method: "GET",
                     credentials: "include",
                 })
 
@@ -27,8 +27,7 @@ export function useFetchUserData() {
                 dispatch(login(data.access_token));
             }
             catch (err: any) {
-                setError(err);
-                dispatch(logout());
+                setError(err.message);
             }
             finally {
                 setIsLoading(false);

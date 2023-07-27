@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.cm.sphere.config.JwtTokenUtil;
 import com.cm.sphere.exception.MissingRefreshTokenException;
-import com.cm.sphere.model.Response.BasicUserDataAndToken;
-import com.cm.sphere.model.User.BasicUserData;
+import com.cm.sphere.model.response.BasicUserDataAndToken;
+import com.cm.sphere.model.user.BasicUserData;
 import com.cm.sphere.repository.UserRepository;
 
 import jakarta.servlet.http.Cookie;
@@ -36,12 +36,11 @@ public class UserService {
             }
         }
 
-        if (refreshToken == null) throw new MissingRefreshTokenException();
-
         final String userId = this.jwtTokenUtil.getIdFromToken(refreshToken, 0);
         final String newAccessToken = this.jwtTokenUtil.generateToken(userId, 1);
         final BasicUserData basicUserData = this.userRepository.fetchBasicUserData(userId);
 
+        basicUserData.setId(null);
         return new BasicUserDataAndToken(newAccessToken, basicUserData);
     }
 }

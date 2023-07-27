@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
 import com.cm.sphere.AwsSecretManager;
 import com.cm.sphere.AwsSecretManager.SecretKeys;
 import com.cm.sphere.exception.ExpiredAccessTokenException;
+import com.cm.sphere.exception.MissingRefreshTokenException;
 import com.cm.sphere.exception.TamperedJwtException;
-import com.cm.sphere.model.Security.AuthUserDetails;
+import com.cm.sphere.model.security.AuthUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -81,8 +82,8 @@ public class JwtTokenUtil {
                     .getBody();
         }
         catch (Exception err) {
-            logger.error("JwtTokenUtil - Extract all claims: " + err.getMessage());
-            throw new RuntimeException("Could not parse JWT token: " + token, err);
+            logger.error("JwtTokenUtil - Extract all claims: " + err);
+            throw new MissingRefreshTokenException();
         }
     }
 

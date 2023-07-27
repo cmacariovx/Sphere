@@ -11,15 +11,21 @@ function MainHeader() {
     const [showSignup, setShowSignup] = useState(false);
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+    const needsAuth = useSelector((state: RootState) => state.auth.needsAuth);
 
     useEffect(() => {
-        if (showLogin || showSignup) document.body.classList.add('preventBgScroll');
-        if (!showLogin && !showSignup) document.body.classList.remove('preventBgScroll');
         if (isLoggedIn) {
             setShowLogin(false);
             setShowSignup(false);
         }
-    }, [showLogin, showSignup, isLoggedIn]);
+
+        if (needsAuth) setShowLogin(true);
+    }, [isLoggedIn, needsAuth]);
+
+    useEffect(() => {
+        if (showLogin || showSignup) document.body.classList.add('preventBgScroll');
+        else document.body.classList.remove('preventBgScroll');
+    }, [showLogin, showSignup]);
 
     return (
         <div className={styles.mainHeader}>
@@ -38,7 +44,7 @@ function MainHeader() {
                     <i className={`${styles.headerOptionLogo} fa-solid fa-house`}></i>
                     <p className={styles.headerOptionText}>Home</p>
                 </div>
-                <div className={styles.headerOption} onClick={() => setShowLogin(true)}>
+                <div className={styles.headerOption} onClick={() => {if (!isLoggedIn) setShowLogin(true)}}>
                     <i className={`${styles.headerOptionLogo} fa-solid fa-bell`}></i>
                     <p className={styles.headerOptionText}>Notifications</p>
                 </div>
@@ -52,12 +58,12 @@ function MainHeader() {
                 </div>
             </div>
 
-            {showLogin &&
+            {!isLoggedIn && showLogin &&
                 <Login
                     switch={() => {setShowLogin(false); setShowSignup(true);}}
                     close={() => {setShowLogin(false); setShowSignup(false);}}
                 />}
-            {showSignup &&
+            {!isLoggedIn && showSignup &&
                 <Signup
                     switch={() => {setShowSignup(false); setShowLogin(true);}}
                     close={() => {setShowSignup(false); setShowLogin(false);}}

@@ -1,4 +1,4 @@
-package com.cm.sphere.model.Error;
+package com.cm.sphere.model.error;
 
 import java.util.Date;
 

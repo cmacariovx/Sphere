@@ -1,4 +1,4 @@
-package com.cm.sphere.model.Security;
+package com.cm.sphere.model.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,17 +26,17 @@ public class AuthUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return this.authorities;
     }
 
     @Override
     public String getPassword() {
-        return hashedPassword;
+        return this.hashedPassword;
     }
 
     @Override
     public String getUsername() {
-        return id;
+        return this.id;
     }
 
     @Override

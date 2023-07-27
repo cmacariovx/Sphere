@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cm.sphere.model.Response.BasicUserDataAndToken;
+import com.cm.sphere.model.response.BasicUserDataAndToken;
 import com.cm.sphere.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;

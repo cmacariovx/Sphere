@@ -1,4 +1,4 @@
-package com.cm.sphere.model.User;
+package com.cm.sphere.model.user;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 

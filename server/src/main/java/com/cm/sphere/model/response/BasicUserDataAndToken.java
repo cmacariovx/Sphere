@@ -1,6 +1,6 @@
-package com.cm.sphere.model.Response;
+package com.cm.sphere.model.response;
 
-import com.cm.sphere.model.User.BasicUserData;
+import com.cm.sphere.model.user.BasicUserData;
 
 public class BasicUserDataAndToken {
     private final String newAccessToken;

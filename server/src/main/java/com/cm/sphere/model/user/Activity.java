@@ -1,4 +1,4 @@
-package com.cm.sphere.model.User;
+package com.cm.sphere.model.user;
 
 import java.time.Instant;
 import java.util.ArrayList;

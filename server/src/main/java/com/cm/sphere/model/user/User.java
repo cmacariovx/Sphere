@@ -1,4 +1,4 @@
-package com.cm.sphere.model.User;
+package com.cm.sphere.model.user;
 
 import java.util.ArrayList;
 
@@ -60,7 +60,7 @@ public class User {
     }
 
     public String getStringId() {
-        return this.id.toString();
+        return this.id.toHexString();
     }
 
     public String getFirstName() {

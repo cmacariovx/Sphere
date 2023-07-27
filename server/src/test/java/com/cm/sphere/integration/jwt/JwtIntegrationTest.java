@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.cm.sphere.config.JwtTokenUtilTest;
-import com.cm.sphere.model.Request.SignupRequest;
+import com.cm.sphere.model.request.SignupRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.Cookie;
@@ -24,7 +24,7 @@ public class JwtIntegrationTest {
     private final MockMvc mockMvc;
     private final JwtTokenUtilTest jwtTokenUtilTest;
 
-    private static final String testUserId = "64c1a4aaefd1ab63c198f869";
+    private static final String testUserId = "64c1e161deb0d46269bdd598";
     private static final Logger logger = LoggerFactory.getLogger(JwtIntegrationTest.class);
 
     @Autowired
@@ -59,7 +59,6 @@ public class JwtIntegrationTest {
 
         logger.trace(result.getResponse().getContentAsString());
     }
-
 
     // Test fetching new refresh token
 

@@ -1,4 +1,4 @@
-package com.cm.sphere.model.Security;
+package com.cm.sphere.model.security;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class AuthUser {
     }
 
     public String getStringId() {
-        return this.id.toString();
+        return this.id.toHexString();
     }
 
     public String getHashedPassword() {

@@ -6,9 +6,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.cm.sphere.model.Security.AuthUser;
-import com.cm.sphere.model.User.BasicUserData;
-import com.cm.sphere.model.User.User;
+import com.cm.sphere.exception.TamperedJwtException;
+import com.cm.sphere.model.security.AuthUser;
+import com.cm.sphere.model.user.BasicUserData;
+import com.cm.sphere.model.user.User;
 
 @Repository
 public class UserRepository {
@@ -30,12 +31,12 @@ public class UserRepository {
         final Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(userId));
 
-        // optimize fetching instead of whole user object
         final User user = this.mongoTemplate.findOne(query, User.class);
 
-        if (user == null) return null; // handle this case accordingly
+        if (user == null) throw new TamperedJwtException();
 
         return new BasicUserData(
+            user.getId().toHexString(),
             user.getFirstName(),
             user.getLastName(),
             user.getAbout(),

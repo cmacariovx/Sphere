@@ -1,7 +1,7 @@
 package com.cm.sphere.config;
 
 import com.cm.sphere.exception.BaseCustomAuthException;
-import com.cm.sphere.model.Error.ApiError;
+import com.cm.sphere.model.error.ApiError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

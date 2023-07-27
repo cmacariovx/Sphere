@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 
-import com.cm.sphere.model.Security.AuthUserDetails;
+import com.cm.sphere.model.security.AuthUserDetails;
 import com.cm.sphere.service.UserAuthService;
 
 public class JwtAuthProvider implements AuthenticationProvider {

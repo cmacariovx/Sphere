@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import styles from './Signup.module.css';
 import { useDispatch } from 'react-redux';
 import { login } from '../Redux/slices/authSlice';
+import { authResponse, loginPayload } from '../interfaces';
 
 function Signup(props: any) {
     const [isAgreed, setIsAgreed] = useState(false);
@@ -29,31 +30,36 @@ function Signup(props: any) {
     }
 
     async function handleSubmit() {
+        let errorSet = false;
         setErrors(null);
 
         const newErrors: {[key: string]: string} = {};
 
         if (!firstNameRef.current || !isNameValid(firstNameRef.current.value)) {
             newErrors.firstName = 'First name must be between 2 and 20 characters and only contain letters.';
+            errorSet = true;
         }
 
         if (!lastNameRef.current || !isNameValid(lastNameRef.current.value)) {
             newErrors.lastName = 'Last name must be between 2 and 20 characters and only contain letters.';
+            errorSet = true;
         }
 
         if (!emailRef.current || !isEmailValid(emailRef.current.value)) {
             newErrors.email = 'Invalid email.';
+            errorSet = true;
         }
 
         if (!passwordRef.current || !isPasswordSecure(passwordRef.current.value)) {
             newErrors.password = 'Password must contain at least one uppercase and one lowercase character, one digit, and be at least 8 characters long.';
+            errorSet = true;
         }
 
         if (!isAgreed) newErrors.agreed = "You must be 16 years of age or older to create an account."
 
         setErrors(newErrors);
 
-        if (Object.keys(newErrors).length != 0) return;
+        if (errorSet) return;
 
         try {
             const response = await fetch("/api/auth/signup", {
@@ -71,12 +77,20 @@ function Signup(props: any) {
 
             if (!response.ok) throw new Error("Signup was not successful, please try again.");
 
-            const data = await response.json();
-            dispatch(login(data.access_token));
-            setIsLoading(false);
+            const data: authResponse = await response.json();
+
+            const loginPayload: loginPayload = {
+                accessToken: data.accessToken,
+                userData: data.userData,
+            }
+
+            dispatch(login(loginPayload));
         }
         catch (err) {
             console.log(err);
+        }
+        finally {
+            setIsLoading(false);
         }
     }
 

@@ -4,24 +4,34 @@ import './global.css';
 import HomeFeed from './Pages/HomeFeed';
 import Profile from './Pages/Profile';
 import Circle from './Pages/Circle';
-import { useFetchUserData } from './Hooks/useFetchUserData';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from './Redux/slices/authSlice';
+import { setNeedsAuth } from './Redux/slices/authSlice';
 import { RootState } from './Redux/store';
 import { useEffect } from 'react';
+import { fetchBasicUserData } from './Api/fetchBasicUserData';
 
 function App() {
-    const { isLoading, error } = useFetchUserData();
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+    const userData = useSelector((state: RootState) => state.auth.userData);
 
-    if (error) {
-        return (
-            <div>
-                Error: {error}
-                <button onClick={() => dispatch(logout())}>Logout</button>
-            </div>
-        );
-    }
+    useEffect(() => {
+        const na: string | null = localStorage.getItem('na');
+        if (na != "0" && na != "1") localStorage.setItem('na', "0");
+        const needsAuth: boolean = localStorage.getItem('na') == "0" ? false : true;
+        dispatch(setNeedsAuth(needsAuth));
+
+        if (!needsAuth && !isLoggedIn) fetchBasicUserData(dispatch, isLoggedIn);
+    }, [dispatch, isLoggedIn]);
+
+
+
+
+    // logout
+    // expired access token - regular endpoint
+
+
+
 
     return (
         <div className="app">

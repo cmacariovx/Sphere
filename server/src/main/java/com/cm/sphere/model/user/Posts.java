@@ -2,12 +2,11 @@ package com.cm.sphere.model.user;
 
 import java.util.ArrayList;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Posts {
     @Field(name = "postIds")
-    private ArrayList<ObjectId> postIds;
+    private ArrayList<String> postIds;
 
     @Field(name = "totalUpvotes")
     private int totalUpvotes;
@@ -29,7 +28,7 @@ public class Posts {
         this.totalShares = 0;
     }
 
-    public ArrayList<ObjectId> getPostIds() {
+    public ArrayList<String> getPostIds() {
         return this.postIds;
     }
 
@@ -49,7 +48,7 @@ public class Posts {
         return this.totalShares;
     }
 
-    public void setPostIds(ArrayList<ObjectId> postIds) {
+    public void setPostIds(ArrayList<String> postIds) {
         this.postIds = postIds;
     }
 
@@ -69,7 +68,7 @@ public class Posts {
         this.totalShares = totalShares;
     }
 
-    public void addPostId(ObjectId id) {
+    public void addPostId(String id) {
         this.postIds.add(id);
     }
 

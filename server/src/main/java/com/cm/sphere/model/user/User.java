@@ -2,7 +2,6 @@ package com.cm.sphere.model.user;
 
 import java.util.ArrayList;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,13 +9,16 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "users")
 public class User {
     @Id
-    private ObjectId id;
+    private String id;
 
     @Field(name = "firstName")
     private String firstName;
 
     @Field(name = "lastName")
     private String lastName;
+
+    @Field(name = "title")
+    private String title;
 
     @Field(name = "about")
     private String about;
@@ -45,7 +47,8 @@ public class User {
     public User(String firstName, String lastName, String email, String hashedPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.about = null;
+        this.title = "";
+        this.about = "";
         this.email = email;
         this.hashedPassword = hashedPassword;
         this.assets = new Assets();
@@ -55,12 +58,8 @@ public class User {
         this.roles = new ArrayList<>();
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return this.id;
-    }
-
-    public String getStringId() {
-        return this.id.toHexString();
     }
 
     public String getFirstName() {
@@ -69,6 +68,10 @@ public class User {
 
     public String getLastName() {
         return this.lastName;
+    }
+
+    public String getTitle() {
+        return this.title;
     }
 
     public String getAbout() {
@@ -103,7 +106,7 @@ public class User {
         return this.roles;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -115,7 +118,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setAbout (String about) {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAbout(String about) {
         this.about = about;
     }
 

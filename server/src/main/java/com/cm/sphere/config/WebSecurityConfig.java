@@ -22,13 +22,15 @@ public class WebSecurityConfig {
     private final JwtRequestFilter jwtRequestFilter;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtTokenUtil;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Autowired
-    public WebSecurityConfig(UserAuthService userAuthService, JwtRequestFilter jwtRequestFilter, PasswordEncoder passwordEncoder, JwtTokenUtil jwtTokenUtil) {
+    public WebSecurityConfig(UserAuthService userAuthService, JwtRequestFilter jwtRequestFilter, PasswordEncoder passwordEncoder, JwtTokenUtil jwtTokenUtil, CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
         this.userAuthService = userAuthService;
         this.jwtRequestFilter = jwtRequestFilter;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
     }
 
     @Bean
@@ -37,11 +39,11 @@ public class WebSecurityConfig {
             .csrf(csrf -> csrf.disable())
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
             .authorizeHttpRequests(auth ->
-                auth.requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                auth.requestMatchers("/auth/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/user/fetchBasicData").permitAll()
                 .anyRequest().authenticated()
             )
-            .exceptionHandling(e -> e.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
+            .exceptionHandling(e -> e.authenticationEntryPoint(this.customAuthenticationEntryPoint))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .cors(cors -> {
                 final CorsConfiguration config = new CorsConfiguration();

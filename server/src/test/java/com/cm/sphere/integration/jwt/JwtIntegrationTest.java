@@ -24,7 +24,7 @@ public class JwtIntegrationTest {
     private final MockMvc mockMvc;
     private final JwtTokenUtilTest jwtTokenUtilTest;
 
-    private static final String testUserId = "64c1e161deb0d46269bdd598";
+    private static final String testUserId = "64c2f7c839108f02b5ee05bc";
     private static final Logger logger = LoggerFactory.getLogger(JwtIntegrationTest.class);
 
     @Autowired

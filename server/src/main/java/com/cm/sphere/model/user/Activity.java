@@ -3,7 +3,6 @@ package com.cm.sphere.model.user;
 import java.time.Instant;
 import java.util.ArrayList;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Activity {
@@ -11,10 +10,10 @@ public class Activity {
     private Posts posts;
 
     @Field(name = "upvotedIds")
-    private ArrayList<ObjectId> upvotedIds;
+    private ArrayList<String> upvotedIds;
 
     @Field(name = "commentIds")
-    private ArrayList<ObjectId> commentIds;
+    private ArrayList<String> commentIds;
 
     @Field(name = "lastLogin")
     private Instant lastLogin;
@@ -26,19 +25,19 @@ public class Activity {
         this.posts = new Posts();
         this.upvotedIds = new ArrayList<>();
         this.commentIds = new ArrayList<>();
-        this.lastLogin = null;
-        this.dateAccountCreated = null;
+        this.lastLogin = Instant.now();
+        this.dateAccountCreated = Instant.now();
     }
 
     public Posts getPosts() {
         return this.posts;
     }
 
-    public ArrayList<ObjectId> getUpvoted() {
+    public ArrayList<String> getUpvoted() {
         return this.upvotedIds;
     }
 
-    public ArrayList<ObjectId> getComments() {
+    public ArrayList<String> getComments() {
         return this.commentIds;
     }
 
@@ -54,19 +53,19 @@ public class Activity {
         this.posts = posts;
     }
 
-    public void setUpvotedIds(ArrayList<ObjectId> upvotedIds) {
+    public void setUpvotedIds(ArrayList<String> upvotedIds) {
         this.upvotedIds = upvotedIds;
     }
 
-    public void setCommentIds(ArrayList<ObjectId> commentIds) {
+    public void setCommentIds(ArrayList<String> commentIds) {
         this.commentIds = commentIds;
     }
 
-    public void addUpvotedId(ObjectId upvotedId) {
+    public void addUpvotedId(String upvotedId) {
         this.upvotedIds.add(upvotedId);
     }
 
-    public void addCommentId(ObjectId commentId) {
+    public void addCommentId(String commentId) {
         this.commentIds.add(commentId);
     }
 

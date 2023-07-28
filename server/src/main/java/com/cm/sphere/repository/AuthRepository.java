@@ -33,15 +33,15 @@ public class AuthRepository {
         final User savedUser = this.mongoTemplate.save(user);
 
         return new BasicUserData(
-            savedUser.getId().toHexString(),
+            savedUser.getId(),
             savedUser.getFirstName(),
             savedUser.getLastName(),
-            savedUser.getAbout(),
+            savedUser.getTitle(),
             savedUser.getInterests().getMainInterest(),
             savedUser.getAssets().getProfilePictureUrl(),
             savedUser.getAssets().getBannerPictureUrl(),
-            savedUser.getVerification().isValidated(),
-            savedUser.getVerification().isVerified()
+            savedUser.getVerification().getValidated(),
+            savedUser.getVerification().getVerified()
         );
     }
 
@@ -57,15 +57,15 @@ public class AuthRepository {
         if (!passwordMatches) throw new BadCredentialsException("Invalid credentials.");
 
         return new BasicUserData(
-            user.getId().toHexString(),
+            user.getId(),
             user.getFirstName(),
             user.getLastName(),
-            user.getAbout(),
+            user.getTitle(),
             user.getInterests().getMainInterest(),
             user.getAssets().getProfilePictureUrl(),
             user.getAssets().getBannerPictureUrl(),
-            user.getVerification().isValidated(),
-            user.getVerification().isVerified()
+            user.getVerification().getValidated(),
+            user.getVerification().getVerified()
         );
     }
 }

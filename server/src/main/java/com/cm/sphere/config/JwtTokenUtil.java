@@ -10,8 +10,6 @@ import com.cm.sphere.AwsSecretManager;
 import com.cm.sphere.AwsSecretManager.SecretKeys;
 import com.cm.sphere.exception.ExpiredAccessTokenException;
 import com.cm.sphere.exception.MissingRefreshTokenException;
-import com.cm.sphere.exception.TamperedJwtException;
-import com.cm.sphere.model.security.AuthUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -44,9 +42,7 @@ public class JwtTokenUtil {
         this.accessSecretKey = this.secretTokenKeys.getAccessTokenSecretKey();
     }
 
-    public void validateToken(String token, AuthUserDetails userDetails, int tokenType) {
-        final String id = getIdFromToken(token, tokenType);
-        if (!id.equals(userDetails.getId())) throw new TamperedJwtException();
+    public void validateToken(String token, int tokenType) {
         if (isTokenExpired(token, tokenType)) throw new ExpiredAccessTokenException();
     }
 

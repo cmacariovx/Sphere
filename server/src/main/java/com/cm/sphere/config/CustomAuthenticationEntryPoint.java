@@ -19,7 +19,12 @@ import org.slf4j.LoggerFactory;
 
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    private ObjectMapper mapper;
     private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationEntryPoint.class);
+
+    public CustomAuthenticationEntryPoint(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
@@ -29,6 +34,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
             httpStatus = ((BaseCustomAuthException) authException).getHttpStatus().value();
         }
 
+        System.out.println("HIIIIIIIIIIIIIII" + authException);
+
         response.setStatus(httpStatus);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
@@ -37,7 +44,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         final ApiError data = new ApiError(HttpStatus.valueOf(httpStatus), authException.getMessage());
 
         final OutputStream out = response.getOutputStream();
-        final ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(out, data);
         out.flush();
     }

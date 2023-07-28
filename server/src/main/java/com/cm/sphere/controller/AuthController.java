@@ -3,11 +3,9 @@ package com.cm.sphere.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cm.sphere.exception.ContentTypeException;
 import com.cm.sphere.model.request.LoginRequest;
 import com.cm.sphere.model.request.SignupRequest;
 import com.cm.sphere.model.response.AuthResponse;
@@ -35,8 +33,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Object> signup(@RequestHeader("Content-Type") String contentType, @Valid @RequestBody SignupRequest body, HttpServletResponse response) {
-        if (!"application/json".equals(contentType)) throw new ContentTypeException();
+    public ResponseEntity<Object> signup(@Valid @RequestBody SignupRequest body, HttpServletResponse response) {
         final AuthResponse authResponse = this.authService.signup(body);
 
         final Cookie cookie = this.authService.createRefreshTokenCookie(authResponse.getRefreshToken());
@@ -47,8 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestHeader("Content-Type") String contentType, @Valid @RequestBody LoginRequest body, HttpServletResponse response) {
-        if (!"application/json".equals(contentType)) throw new ContentTypeException();
+    public ResponseEntity<Object> login(@Valid @RequestBody LoginRequest body, HttpServletResponse response) {
         final AuthResponse authResponse = this.authService.login(body);
 
         final Cookie cookie = this.authService.createRefreshTokenCookie(authResponse.getRefreshToken());

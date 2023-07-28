@@ -45,17 +45,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             if (accessTokenHeader == null || !accessTokenHeader.startsWith("Bearer ")) throw new InvalidAccessTokenHeaderException();
 
             final String accessToken = accessTokenHeader.substring(7);
-            final Integer tokenType = jwtTokenUtil.getClaimFromTokenWithoutValidation(accessToken, claims -> claims.get("token_type", Integer.class));
+            final Integer tokenType = 1;
             final String userId = jwtTokenUtil.getIdFromToken(accessToken, tokenType);
 
             if (userId == null || tokenType == null) throw new TamperedJwtException();
-            if (SecurityContextHolder.getContext().getAuthentication() != null) {
-                chain.doFilter(request, response);
-                return;
-            }
 
             final AuthUserDetails userDetails = this.userAuthService.loadUserByUsername(userId);
-            jwtTokenUtil.validateToken(accessToken, userDetails, tokenType);
+            jwtTokenUtil.validateToken(accessToken, tokenType);
 
             final JwtAuthToken jwtAuthToken = new JwtAuthToken(userDetails, accessToken, userDetails.getAuthorities());
 

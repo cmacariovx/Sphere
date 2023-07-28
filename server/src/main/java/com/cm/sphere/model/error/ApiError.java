@@ -1,18 +1,18 @@
 package com.cm.sphere.model.error;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.http.HttpStatus;
 
 public class ApiError {
     private final HttpStatus httpStatus;
     private final String message;
-    private final Date timestamp;
+    private final Instant timestamp;
 
     public ApiError(HttpStatus httpStatus, String message) {
         this.httpStatus = httpStatus;
         this.message = message;
-        this.timestamp = new Date();
+        this.timestamp = Instant.now();
     }
 
     public HttpStatus getHttpStatus() {
@@ -23,7 +23,7 @@ public class ApiError {
         return this.message;
     }
 
-    public Date getTimestamp() {
+    public Instant getTimestamp() {
         return this.timestamp;
     }
 }

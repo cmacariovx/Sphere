@@ -1,21 +1,21 @@
 package com.cm.sphere.model.user;
 
 public class BasicUserData {
-    private String id;
+    private final String id;
     private final String firstName;
     private final String lastName;
-    private final String about;
+    private final String title;
     private final String mainInterest;
     private final String profilePictureUrl;
     private final String bannerPictureUrl;
     private final boolean validated;
     private final boolean verified;
 
-    public BasicUserData(String id, String firstName, String lastName, String about, String mainInterest, String profilePictureUrl, String bannerPictureUrl, boolean validated, boolean verified) {
+    public BasicUserData(String id, String firstName, String lastName, String title, String mainInterest, String profilePictureUrl, String bannerPictureUrl, boolean validated, boolean verified) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.about = about;
+        this.title = title;
         this.mainInterest = mainInterest;
         this.profilePictureUrl = profilePictureUrl;
         this.bannerPictureUrl = bannerPictureUrl;
@@ -35,8 +35,8 @@ public class BasicUserData {
         return this.lastName;
     }
 
-    public String getAbout() {
-        return this.about;
+    public String getTitle() {
+        return this.title;
     }
 
     public String getMainInterest() {
@@ -57,9 +57,5 @@ public class BasicUserData {
 
     public boolean isVerified() {
         return this.verified;
-    }
-
-    public void setId(String id) {
-        this.id = null;
     }
 }

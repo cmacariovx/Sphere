@@ -39,7 +39,6 @@ public class AuthService {
         final String refreshToken = this.jwtTokenUtil.generateToken(userData.getId(), 0);
         final String accessToken = this.jwtTokenUtil.generateToken(userData.getId(), 1);
 
-        userData.setId(null);
         final AuthResponse response = new AuthResponse("Signup successful", accessToken, userData, refreshToken);
         return response;
     }
@@ -50,7 +49,6 @@ public class AuthService {
         final String refreshToken = this.jwtTokenUtil.generateToken(userData.getId(), 0);
         final String accessToken = this.jwtTokenUtil.generateToken(userData.getId(), 1);
 
-        userData.setId(null);
         final AuthResponse response = new AuthResponse("Login successful.", accessToken, userData, refreshToken);
         return response;
     }

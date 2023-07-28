@@ -10,8 +10,8 @@ public class Assets {
     private String bannerPictureUrl;
 
     public Assets() {
-        this.profilePictureUrl = null;
-        this.bannerPictureUrl = null;
+        this.profilePictureUrl = "";
+        this.bannerPictureUrl = "";
     }
 
     public String getProfilePictureUrl() {

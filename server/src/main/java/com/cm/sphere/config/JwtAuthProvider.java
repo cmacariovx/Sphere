@@ -28,7 +28,7 @@ public class JwtAuthProvider implements AuthenticationProvider {
 
         final AuthUserDetails userDetails = (AuthUserDetails) userAuthService.loadUserByUsername(id);
 
-        jwtTokenUtil.validateToken(token, userDetails, 1);
+        jwtTokenUtil.validateToken(token, 1);
 
         final Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
         final Authentication finalAuthentication = new JwtAuthToken(userDetails, token, authorities);

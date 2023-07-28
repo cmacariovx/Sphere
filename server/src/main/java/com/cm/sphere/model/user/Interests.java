@@ -3,7 +3,6 @@ package com.cm.sphere.model.user;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Interests {
@@ -17,10 +16,10 @@ public class Interests {
     private ArrayList<String> topInterests;
 
     @Field(name = "circleIds")
-    private ArrayList<ObjectId> circleIds;
+    private ArrayList<String> circleIds;
 
     public Interests() {
-        this.mainInterest = null;
+        this.mainInterest = "";
         this.interestsCount = new HashMap<>();
         this.topInterests = new ArrayList<>();
         this.circleIds = new ArrayList<>();
@@ -38,7 +37,7 @@ public class Interests {
         return this.topInterests;
     }
 
-    public ArrayList<ObjectId> getCircleIds() {
+    public ArrayList<String> getCircleIds() {
         return this.circleIds;
     }
 
@@ -54,7 +53,7 @@ public class Interests {
         this.topInterests = topInterests;
     }
 
-    public void setCircleIds(ArrayList<ObjectId> circleIds) {
+    public void setCircleIds(ArrayList<String> circleIds) {
         this.circleIds = circleIds;
     }
 

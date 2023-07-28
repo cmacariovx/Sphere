@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.cm.sphere.config.JwtTokenUtil;
 import com.cm.sphere.exception.MissingRefreshTokenException;
+import com.cm.sphere.model.main.MainUserData;
 import com.cm.sphere.model.response.BasicUserDataAndToken;
 import com.cm.sphere.model.user.BasicUserData;
 import com.cm.sphere.repository.UserRepository;
@@ -36,11 +37,18 @@ public class UserService {
             }
         }
 
+        jwtTokenUtil.validateToken(refreshToken, 0);
+
         final String userId = this.jwtTokenUtil.getIdFromToken(refreshToken, 0);
+        final String newRefreshToken = this.jwtTokenUtil.generateToken(userId, 0);
         final String newAccessToken = this.jwtTokenUtil.generateToken(userId, 1);
         final BasicUserData basicUserData = this.userRepository.fetchBasicUserData(userId);
 
-        basicUserData.setId(null);
-        return new BasicUserDataAndToken(newAccessToken, basicUserData);
+        return new BasicUserDataAndToken(newAccessToken, basicUserData, newRefreshToken);
+    }
+
+    public MainUserData fetchProfileData(String profileId) {
+        final MainUserData mainUserData = this.userRepository.fetchProfileData(profileId);
+        return mainUserData;
     }
 }

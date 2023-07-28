@@ -75,6 +75,7 @@ function Signup(props: any) {
                 }
             })
 
+            // same email most likely
             if (!response.ok) throw new Error("Signup was not successful, please try again.");
 
             const data: authResponse = await response.json();

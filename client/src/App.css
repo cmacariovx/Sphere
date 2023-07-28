@@ -17,3 +17,12 @@
     align-items: center;
     background-color: white;
 }
+
+::selection {
+    background: var(--blue);
+    color: white;
+}
+::-moz-selection {
+    background: var(--blue);
+    color: white;
+}

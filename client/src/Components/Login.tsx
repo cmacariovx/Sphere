@@ -41,6 +41,7 @@ function Login(props: any) {
                 }
             })
 
+            // bad credentials most likely
             if (!response.ok) throw new Error("Login was not successful, please try again.");
 
             const data: authResponse = await response.json();

@@ -3,15 +3,20 @@ import { useEffect, useState } from 'react';
 import styles from './MainHeader.module.css';
 import Signup from './Signup';
 import Login from './Login';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../Redux/store';
+import { logoutMain } from '../Api/logout';
 
 function MainHeader() {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignup, setShowSignup] = useState(false);
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
     const needsAuth = useSelector((state: RootState) => state.auth.needsAuth);
+    const userId = useSelector((state: RootState) => state.auth.userData?.id);
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -48,11 +53,11 @@ function MainHeader() {
                     <i className={`${styles.headerOptionLogo} fa-solid fa-bell`}></i>
                     <p className={styles.headerOptionText}>Notifications</p>
                 </div>
-                <div className={styles.headerOption}>
+                <div className={styles.headerOption} onClick={async() => await logoutMain(dispatch)}>
                     <i className={`${styles.headerOptionLogo} fa-solid fa-comments`}></i>
                     <p className={styles.headerOptionText}>Messaging</p>
                 </div>
-                <div className={styles.headerOption} onClick={() => navigate('/profile')}>
+                <div className={styles.headerOption} onClick={() => navigate('/profile/' + userId)}>
                     <i className={`${styles.headerOptionLogo} fa-solid fa-user`}></i>
                     <p className={styles.headerOptionText}>Profile</p>
                 </div>

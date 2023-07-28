@@ -2,12 +2,45 @@ import styles from './ProfileBody.module.css';
 import seattle from '../../Assets/seattle.png';
 import profilePicture from '../../Assets/profile.jpg';
 import Post from '../HomeFeed/Post';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { MainUserData } from '../../interfaces';
 
-function ProfileBody() {
+function ProfileBody(props: {userData: MainUserData | null}) {
     const [selectedActivity, setSelectedActivity] = useState(0);
     const [showTalks, setShowTalks] = useState(true);
     const [showCircles, setShowCircles] = useState(true);
+
+    const [postsCount, setPostsCount] = useState(0);
+    const [userName, setUserName] = useState("--");
+    const [verified, setVerified] = useState(false);
+    const [title, setTitle] = useState("");
+    const [mainInterest, setMainInterest] = useState("");
+    const [upvotesCount, setUpvotesCount] = useState(0);
+    const [about, setAbout] = useState("");
+    const [circleIds, setCircleIds] = useState<string[]>([]);
+    const [postIds, setPostIds] = useState<string[]>([]);
+    const [commentIds, setCommentIds] = useState<string[]>([]);
+    const [upvotedIds, setUpvotedIds] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (props.userData != null) {
+            setPostsCount(props.userData.activity.posts.postIds.length);
+            setUserName(capWord(props.userData.firstName) + " " + capWord(props.userData.lastName));
+            setVerified(props.userData.verification.verified);
+            setTitle(props.userData.title);
+            setMainInterest(props.userData.interests.mainInterest);
+            setUpvotesCount(props.userData.activity.posts.totalUpvotes);
+            setAbout(props.userData.about);
+            setCircleIds(props.userData.interests.circleIds);
+            setPostIds(props.userData.activity.posts.postIds);
+            setCommentIds(props.userData.activity.commentIds);
+            setUpvotedIds(props.userData.activity.upvotedIds);
+        }
+    }, [props.userData]);
+
+    function capWord(word: string) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }
 
     return (
         <Fragment>
@@ -17,13 +50,13 @@ function ProfileBody() {
                 <div className={styles.profileUpper}>
                     <div className={styles.profileUpperUpper}>
                         <div className={styles.profileStats}>
-                            <pre className={styles.profileStat0}>544  </pre>
+                            <p className={styles.profileStat0}>{"Neo4j"}</p>
                             <p className={styles.profileStat1}>Followers</p>
                             <p className={styles.profileDot}>•</p>
-                            <pre className={styles.profileStat0}>35  </pre>
+                            <p className={styles.profileStat0}>{"Neo4j"}</p>
                             <p className={styles.profileStat1}>Friends</p>
                             <p className={styles.profileDot}>•</p>
-                            <pre className={styles.profileStat0}>12  </pre>
+                            <p className={styles.profileStat0}>{postsCount}</p>
                             <p className={styles.profileStat1}>Posts</p>
                         </div>
                         <div className={styles.profileButtons}>
@@ -40,13 +73,13 @@ function ProfileBody() {
                     <div className={styles.profileUpperLower}>
                         <div className={styles.profileUpperLowerLeft}>
                             <div className={styles.circleNameContainer}>
-                                <p className={styles.profileName}>Carlos Macario</p>
-                                <div className={styles.verifiedContainer}>
+                                <p className={styles.profileName}>{userName}</p>
+                                {verified && <div className={styles.verifiedContainer}>
                                     <i className={`${styles.verifiedBadge} fa-solid fa-certificate`}></i>
                                     <i className={`${styles.verifiedCheck} fa-solid fa-check`}></i>
-                                </div>
+                                </div>}
                             </div>
-                            <pre className={styles.profileTitle}>Founder of Sphere  •  Software Engineering</pre>
+                            <pre className={styles.profileTitle}>{title + "  •  " + mainInterest}</pre>
                             <div className={styles.mutualFriend}>
                                 <img src={profilePicture} className={styles.mutualFriendPicture} />
                                 <p className={styles.mutualFriendName}>5 Mutual Friends: Kevin Valdez, Carlos Macario, and 3 others.</p>
@@ -55,7 +88,7 @@ function ProfileBody() {
                         <div className={styles.profileUpperLowerRight}>
                             <div className={styles.lowerRightStat}>
                                 <i className={`${styles.lowerRightStatIcon1} fa-solid fa-caret-up`}></i>
-                                <p className={styles.lowerRightStatText}>3,061 Upvotes</p>
+                                <p className={styles.lowerRightStatText}>{upvotesCount + " Upvotes"}</p>
                             </div>
                             {/* <div className={styles.lowerRightStat}>
                                 <i className={`${styles.lowerRightStatIcon2} fa-solid fa-check`}></i>
@@ -75,7 +108,7 @@ function ProfileBody() {
                                 </div>
                             </div>
                             <div className={styles.profileAboutBody}>
-                                <pre className={styles.profileAboutText}>Carlos is a Full Stack Software Engineer with a demonstrated portfolio of 5 performant and scalable applications, utilizing both front-end and back-end technologies, along with data structures and algorithms to optimize performance and user experience.</pre>
+                                <pre className={styles.profileAboutText}>{about}</pre>
                             </div>
                         </div>
                         <div className={styles.profilePosts}>

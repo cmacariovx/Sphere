@@ -86,7 +86,7 @@
     font-size: 26px;
     font-weight: 600;
     margin-bottom: 8px;
-    margin-right: 12px;
+    margin-right: 10px;
 }
 
 .profileTitle {
@@ -108,6 +108,7 @@
     font-size: 15px;
     font-weight: 500;
     color: var(--blue);
+    margin-right: 8px;
 }
 
 .profileStat1 {
@@ -202,6 +203,7 @@
     color: rgb(40, 140, 207);
     width: 20px;
     margin-right: 6px;
+    margin-top: 1px;
 }
 
 .lowerRightStatIcon2 {
@@ -333,6 +335,11 @@
 .profileAboutText {
     font-size: 14px;
     white-space: pre-wrap;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .circles {
@@ -501,13 +508,13 @@
 .verifiedBadge {
     font-size: 22px;
     color: var(--blue);
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 .verifiedCheck {
     font-size: 12px;
     color: white;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     position: absolute;
 }
 
